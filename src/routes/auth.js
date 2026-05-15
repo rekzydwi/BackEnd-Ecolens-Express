@@ -7,7 +7,34 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// POST /auth/register
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Daftar akun baru
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Rekzy
+ *               email:
+ *                 type: string
+ *                 example: rekzy@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: rekzy123
+ *     responses:
+ *       201:
+ *         description: Berhasil daftar
+ *       409:
+ *         description: Email sudah terdaftar
+ */
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -39,7 +66,32 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// POST /auth/login
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login dengan email dan password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: rekzy@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: rekzy123
+ *     responses:
+ *       200:
+ *         description: Berhasil login
+ *       401:
+ *         description: Email atau password salah
+ */
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -73,7 +125,21 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// GET /auth/me
+
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     summary: Ambil data user yang sedang login
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Data user berhasil diambil
+ *       401:
+ *         description: Token tidak valid
+ */
 router.get('/me', authMiddleware, (req, res) => {
   const user = req.user;
   return res.status(200).json({
@@ -84,7 +150,21 @@ router.get('/me', authMiddleware, (req, res) => {
   });
 });
 
-// POST /auth/logout
+
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Berhasil logout
+ *       401:
+ *         description: Token tidak valid
+ */
 router.post('/logout', authMiddleware, (req, res) => {
   return res.status(200).json({ message: `Sampai jumpa, ${req.user.name}!` });
 });
