@@ -16,9 +16,9 @@ const sequelize = new Sequelize(
 const koneksiDatabase = async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ Koneksi database berhasil!');
+    console.log('Koneksi database berhasil!');
   } catch (error) {
-    console.error('❌ Koneksi database gagal:', error.message);
+    console.error('Koneksi database gagal:', error.message);
   }
 };
 

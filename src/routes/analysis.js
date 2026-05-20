@@ -7,17 +7,14 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// Simpan gambar di memory sementara (tidak perlu simpan ke disk)
 const upload = multer({ storage: multer.memoryStorage() });
 
-// POST /static-analysis
 router.post('/', authMiddleware, upload.single('gambar'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ detail: 'File gambar tidak ditemukan' });
     }
 
-    // Teruskan gambar ke FastAPI
     const formData = new FormData();
     formData.append('gambar', req.file.buffer, {
       filename: req.file.originalname,

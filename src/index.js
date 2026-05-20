@@ -32,8 +32,8 @@ const mulaiServer = async () => {
   await koneksiDatabase();
   await sequelize.sync({ alter: true });
   app.listen(PORT, () => {
-    console.log(`🚀 Server jalan di http://localhost:${PORT}`);
-    console.log(`�docs Dokumentasi API di http://localhost:${PORT}/docs`);
+    console.log(`Server jalan di http://localhost:${PORT}`);
+    console.log(`docs Dokumentasi API di http://localhost:${PORT}/docs`);
   });
 };
 
