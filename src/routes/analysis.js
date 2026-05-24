@@ -2,14 +2,13 @@ const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
-const authMiddleware = require('../middleware/auth');
 require('dotenv').config();
 
 const router = express.Router();
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.post('/', authMiddleware, upload.single('gambar'), async (req, res) => {
+router.post('/', upload.single('gambar'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ detail: 'File gambar tidak ditemukan' });
