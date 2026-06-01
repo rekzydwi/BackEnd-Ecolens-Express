@@ -42,7 +42,6 @@ npm run dev
 
 ## Konfigurasi Environment
 
-Isi file `.env` sesuai konfigurasi yang digunakan. Jangan cantumkan nilai asli credential ke repository, gunakan `.env.example` sebagai panduannya.
 PORT=3000
 DB_HOST=
 DB_PORT=3306
