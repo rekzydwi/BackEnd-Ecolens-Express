@@ -42,6 +42,7 @@ npm run dev
 
 ## Konfigurasi Environment
 
+```env
 PORT=3000
 DB_HOST=
 DB_PORT=3306
@@ -51,6 +52,7 @@ DB_NAME=ecolens
 JWT_SECRET=
 JWT_EXPIRES_IN=1h
 FASTAPI_URL=
+```
 
 ## Endpoint
 
@@ -84,6 +86,3 @@ Endpoint `/static-analysis` membutuhkan AI service FastAPI yang sedang berjalan.
 Untuk fitur kamera realtime, frontend terhubung langsung ke AI service via WebSocket tanpa melewati backend ini.
 
 Password pengguna dienkripsi menggunakan bcrypt sebelum disimpan ke database.
-
-
-## Struktur Proyek
